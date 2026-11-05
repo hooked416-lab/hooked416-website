@@ -1,0 +1,43 @@
+name: Publish original Hooked416 website
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out website repository
+        uses: actions/checkout@v4
+      - name: Prepare original website
+        run: |
+          set -euo pipefail
+          test -f Hooked416-GitHub-Pages-Publish/index.html
+          mkdir -p _site
+          cp -a Hooked416-GitHub-Pages-Publish/. _site/
+          test -f _site/index.html
+          test -f _site/CNAME
+          echo "Ready to publish original Hooked416 site"
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Upload site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - name: Deploy site
+        id: deployment
+        uses: actions/deploy-pages@v4
