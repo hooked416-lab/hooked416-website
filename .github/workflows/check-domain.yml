@@ -22,7 +22,7 @@ jobs:
         run: |
           echo "Check timestamp (UTC): $(date -u -Iseconds)"
           echo "GitHub Pages site settings:"
-          gh api "repos/$GITHUB_REPOSITORY/pages" --jq '{cname: .cname, html_url: .html_url, https_enforced: .https_enforced, status: .status, build_type: .build_type}' || true
+          gh api "repos/$GITHUB_REPOSITORY/pages" --jq '{cname: .cname, html_url: .html_url, https_enforced: .https_enforced, https_certificate: .https_certificate, pending_domain_unverified_at: .pending_domain_unverified_at, status: .status, build_type: .build_type}' || true
       - name: Inspect DNS and HTTPS without changing settings
         shell: bash
         run: |
