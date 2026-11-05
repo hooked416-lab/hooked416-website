@@ -1,0 +1,34 @@
+name: Check Hooked416 domain and HTTPS
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/check-domain.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  check-domain:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Inspect DNS and HTTPS without changing settings
+        shell: bash
+        run: |
+          for host in hooked416.com www.hooked416.com; do
+            echo "::group::DNS for $host"
+            echo "A records (1.1.1.1):"
+            dig @1.1.1.1 +short A "$host" || true
+            echo "CNAME (1.1.1.1):"
+            dig @1.1.1.1 +short CNAME "$host" || true
+            echo "AAAA (1.1.1.1):"
+            dig @1.1.1.1 +short AAAA "$host" || true
+            echo "::endgroup::"
+            echo "::group::HTTPS for $host"
+            curl -ILsS --connect-timeout 5 --max-time 15 "https://$host/" -o /dev/null -w 'http_code=%{http_code} effective_url=%{url_effective} ssl_verify_result=%{ssl_verify_result}\n' || true
+            echo "Certificate subject, issuer and dates:"
+            echo | timeout 12 openssl s_client -connect "$host:443" -servername "$host" 2>/dev/null | openssl x509 -noout -subject -issuer -dates -ext subjectAltName 2>&1 | head -30 || true
+            echo "::endgroup::"
+          done
