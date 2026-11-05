@@ -1,4 +1,4 @@
-// Daily facts rotate by Toronto calendar date, independent of deployment or visitor timezone.
+// Append-only daily fact archive. One entry per Toronto calendar day from the epoch; never wrap or reorder.
 (() => {
   'use strict';
   const factLink = document.getElementById('ticker-fact');
@@ -81,7 +81,7 @@
     "source": "https://towingmuseum.com/about-the-museum/"
   },
   {
-    "text": "Did you know? Model Ts were not always black: other colours included blue, red, grey and green.",
+    "text": "Did you know? Ford built the Model T on a moving assembly line at its Highland Park plant.",
     "source": "https://corporate.ford.com/articles/history/the-model-t/"
   },
   {
@@ -98,7 +98,14 @@
     const dateKey = parts.year + '-' + parts.month + '-' + parts.day;
     if (factLink.dataset.factDate === dateKey) return;
     const day = Math.floor((Date.UTC(Number(parts.year), Number(parts.month) - 1, Number(parts.day)) - epoch) / 86400000);
-    const fact = facts[((day % facts.length) + facts.length) % facts.length];
+    // Never recycle a past fact if the publication queue runs out.
+    const bar = document.querySelector('.fact-ticker');
+    if (day < 0 || day >= facts.length) {
+      if (bar) bar.style.display = 'none';
+      return;
+    }
+    if (bar) bar.style.display = '';
+    const fact = facts[day];
     factLink.textContent = fact.text;
     factLink.href = fact.source;
     factLink.dataset.factDate = dateKey;
