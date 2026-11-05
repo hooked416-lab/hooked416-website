@@ -1,3 +1,116 @@
+// Daily facts rotate by Toronto calendar date, independent of deployment or visitor timezone.
+(() => {
+  'use strict';
+  const factLink = document.getElementById('ticker-fact');
+  if (!factLink) return;
+  const facts = [
+  {
+    "text": "Did you know? An early tow truck was built from a 1913 Cadillac by Ernest Holmes Sr.",
+    "source": "https://towingmuseum.com/about-the-museum/"
+  },
+  {
+    "text": "Did you know? Ford introduced the Model T in 1908.",
+    "source": "https://corporate.ford.com/articles/history/the-model-t/"
+  },
+  {
+    "text": "Did you know? Volvo introduced Nils Bohlin's three-point safety belt in 1959.",
+    "source": "https://www.volvocars.com/en-ca/safety/legacy/"
+  },
+  {
+    "text": "Did you know? A Model T stuck in a ditch helped inspire Ernest Holmes Sr.'s tow-truck invention.",
+    "source": "https://towingmuseum.com/about-the-museum/"
+  },
+  {
+    "text": "Did you know? Early Model Ts came with a tool kit. Roadside preparedness has a long history!",
+    "source": "https://corporate.ford.com/articles/history/the-model-t/"
+  },
+  {
+    "text": "Did you know? Astronaut seating helped inspire Volvo's rear-facing child seat, introduced in 1972.",
+    "source": "https://www.volvocars.com/en-ca/safety/legacy/"
+  },
+  {
+    "text": "Did you know? Chattanooga, Tennessee, is credited as the birthplace of the tow truck.",
+    "source": "https://towingmuseum.com/about-the-museum/"
+  },
+  {
+    "text": "Did you know? A windshield was optional on early Model Ts before becoming standard.",
+    "source": "https://corporate.ford.com/articles/history/the-model-t/"
+  },
+  {
+    "text": "Did you know? Volvo introduced a booster cushion for older children in 1978.",
+    "source": "https://www.volvocars.com/en-ca/safety/legacy/"
+  },
+  {
+    "text": "Did you know? The towing museum began as a travelling exhibit inside a semi-trailer.",
+    "source": "https://towingmuseum.com/about-the-museum/"
+  },
+  {
+    "text": "Did you know? Early Model Ts were started with a hand crank.",
+    "source": "https://corporate.ford.com/articles/history/the-model-t/"
+  },
+  {
+    "text": "Did you know? In 1990, Volvo introduced a booster cushion built into the car seat.",
+    "source": "https://www.volvocars.com/en-ca/safety/legacy/"
+  },
+  {
+    "text": "Did you know? The towing museum chose Chattanooga as its permanent home in 1995.",
+    "source": "https://towingmuseum.com/about-the-museum/"
+  },
+  {
+    "text": "Did you know? The Model T's famous nickname was Tin Lizzie.",
+    "source": "https://corporate.ford.com/articles/history/the-model-t/"
+  },
+  {
+    "text": "Did you know? Volvo's first-generation blind-spot information system used cameras to detect nearby vehicles.",
+    "source": "https://www.volvocars.com/en-ca/safety/legacy/"
+  },
+  {
+    "text": "Did you know? The first Towing Hall of Fame class, in 1985, had 27 members.",
+    "source": "https://towingmuseum.com/about-the-museum/"
+  },
+  {
+    "text": "Did you know? Ford built and sold more than 15 million Model Ts.",
+    "source": "https://corporate.ford.com/articles/history/the-model-t/"
+  },
+  {
+    "text": "Did you know? Volvo introduced its Side Impact Protection System in 1991.",
+    "source": "https://www.volvocars.com/en-ca/safety/legacy/"
+  },
+  {
+    "text": "Did you know? Holmes designed a split-boom wrecker that could anchor on one side and recover from the other.",
+    "source": "https://towingmuseum.com/about-the-museum/"
+  },
+  {
+    "text": "Did you know? Model Ts were not always black: other colours included blue, red, grey and green.",
+    "source": "https://corporate.ford.com/articles/history/the-model-t/"
+  },
+  {
+    "text": "Did you know? Volvo shared its three-point safety-belt patent with the wider car industry.",
+    "source": "https://www.volvocars.com/en-ca/safety/legacy/"
+  }
+];
+  const dateFormatter = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'America/Toronto', year: 'numeric', month: '2-digit', day: '2-digit'
+  });
+  const epoch = Date.UTC(2026, 10, 5);
+  function refreshDailyFact() {
+    const parts = Object.fromEntries(dateFormatter.formatToParts(new Date()).map(p => [p.type, p.value]));
+    const dateKey = parts.year + '-' + parts.month + '-' + parts.day;
+    if (factLink.dataset.factDate === dateKey) return;
+    const day = Math.floor((Date.UTC(Number(parts.year), Number(parts.month) - 1, Number(parts.day)) - epoch) / 86400000);
+    const fact = facts[((day % facts.length) + facts.length) % facts.length];
+    factLink.textContent = fact.text;
+    factLink.href = fact.source;
+    factLink.dataset.factDate = dateKey;
+    factLink.title = 'Daily fact for ' + dateKey + ' (Toronto time). Click to read the source.';
+  }
+  refreshDailyFact();
+  // Date comparison handles daylight-saving changes and tabs left open overnight.
+  setInterval(refreshDailyFact, 1000);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) refreshDailyFact(); });
+  window.addEventListener('pageshow', refreshDailyFact);
+})();
+
 (() => {
   'use strict';
   const $ = (s) => document.querySelector(s);
@@ -170,6 +283,6 @@ document.querySelectorAll('[data-carousel]').forEach(carousel => {
  carousel.addEventListener('touchend', e => { const delta=e.changedTouches[0].clientX-touchStart; if(Math.abs(delta)>50)manual(delta<0?1:-1); }, {passive:true});
 });
 
-// The verified dated fact is rendered by build_site.py. Retain it until the next verified publication.
+// Scrolling controls for the daily fact, including reduced-motion support.
 (()=>{const bar=document.querySelector('.fact-ticker'),button=document.getElementById('ticker-pause');if(!bar)return;let paused=matchMedia('(prefers-reduced-motion: reduce)').matches;function sync(){bar.classList.toggle('is-paused',paused);button.textContent=paused?'Play':'Pause';button.setAttribute('aria-label',paused?'Play scrolling fact':'Pause scrolling fact');}button.addEventListener('click',()=>{paused=!paused;sync();});sync();})();
 (()=>{const box=document.querySelector('.review-carousel');if(!box)return;const slides=[...box.querySelectorAll('.review-slide')];let index=0,paused=matchMedia('(prefers-reduced-motion: reduce)').matches;const toggle=document.getElementById('review-pause');function render(){slides.forEach((s,i)=>s.hidden=i!==index);document.getElementById('review-position').textContent=(index+1)+' / '+slides.length;toggle.textContent=paused?'Play reviews':'Pause reviews';}function move(n){index=(index+n+slides.length)%slides.length;render();}document.getElementById('review-prev').addEventListener('click',()=>{paused=true;move(-1);});document.getElementById('review-next').addEventListener('click',()=>{paused=true;move(1);});toggle.addEventListener('click',()=>{paused=!paused;render();});setInterval(()=>{if(!paused&&!document.hidden&&!box.matches(':hover')&&!box.contains(document.activeElement))move(1);},8000);render();})();
