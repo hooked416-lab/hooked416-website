@@ -20,6 +20,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          echo "Check timestamp (UTC): $(date -u -Iseconds)"
           echo "GitHub Pages site settings:"
           gh api "repos/$GITHUB_REPOSITORY/pages" --jq '{cname: .cname, html_url: .html_url, https_enforced: .https_enforced, status: .status, build_type: .build_type}' || true
       - name: Inspect DNS and HTTPS without changing settings
