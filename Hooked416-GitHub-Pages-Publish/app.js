@@ -87,6 +87,86 @@
   {
     "text": "Did you know? Volvo shared its three-point safety-belt patent with the wider car industry.",
     "source": "https://www.volvocars.com/en-ca/safety/legacy/"
+  },
+  {
+    "text": "Electric cars were already on the road in the nineteenth century.",
+    "source": "https://www.energy.gov/articles/history-electric-car"
+  },
+  {
+    "text": "Bosch's 1902 ignition system used a spark plug instead of mechanical break-spark rods.",
+    "source": "https://www.bosch-mobility.com/en/company/milestones/"
+  },
+  {
+    "text": "William Morrison's early electric vehicle carried six people and reached about 14 mph.",
+    "source": "https://www.energy.gov/articles/history-electric-car"
+  },
+  {
+    "text": "A 1921 Bosch horn borrowed an acoustic principle from pipe organs.",
+    "source": "https://www.bosch-mobility.com/en/company/milestones/"
+  },
+  {
+    "text": "New York City once had more than 60 electric taxis around the turn of the twentieth century.",
+    "source": "https://www.energy.gov/articles/history-electric-car"
+  },
+  {
+    "text": "Bosch's 1928 turn indicator was an illuminated arm that swung out from its housing.",
+    "source": "https://www.bosch-mobility.com/en/company/milestones/"
+  },
+  {
+    "text": "Early motorists could choose between steam, petrol and electric power.",
+    "source": "https://www.energy.gov/articles/history-electric-car"
+  },
+  {
+    "text": "The early Blaupunkt Auto-Super 5 car radio weighed about 12 kilograms.",
+    "source": "https://www.bosch-mobility.com/en/company/milestones/"
+  },
+  {
+    "text": "Some early steam cars needed as long as 45 minutes to start in cold weather.",
+    "source": "https://www.energy.gov/articles/history-electric-car"
+  },
+  {
+    "text": "Bosch began manufacturing its own vehicle batteries in 1922.",
+    "source": "https://www.bosch-mobility.com/en/company/milestones/"
+  },
+  {
+    "text": "Thomas Edison worked on improving batteries for electric vehicles.",
+    "source": "https://www.energy.gov/articles/history-electric-car"
+  },
+  {
+    "text": "Bosch introduced an electric windshield-wiper motor in 1926.",
+    "source": "https://www.bosch-mobility.com/en/company/milestones/"
+  },
+  {
+    "text": "Henry Ford and Thomas Edison explored an affordable electric car together in 1914.",
+    "source": "https://www.energy.gov/articles/history-electric-car"
+  },
+  {
+    "text": "Bosch's 1913 lighting system combined headlights, a generator, a battery and a voltage regulator.",
+    "source": "https://www.bosch-mobility.com/en/company/milestones/"
+  },
+  {
+    "text": "The US Postal Service tested electric delivery Jeeps in 1975.",
+    "source": "https://www.energy.gov/articles/history-electric-car"
+  },
+  {
+    "text": "Bosch's 1937 retrofit car heater also helped clear mist from windows.",
+    "source": "https://www.bosch-mobility.com/en/company/milestones/"
+  },
+  {
+    "text": "The Toyota Prius launched in Japan in 1997 before its worldwide release in 2000.",
+    "source": "https://www.energy.gov/articles/history-electric-car"
+  },
+  {
+    "text": "Bosch demonstrated petrol injection in two-stroke passenger cars at the 1951 Frankfurt motor show.",
+    "source": "https://www.bosch-mobility.com/en/company/milestones/"
+  },
+  {
+    "text": "The original Prius used a nickel-metal-hydride battery.",
+    "source": "https://www.energy.gov/articles/history-electric-car"
+  },
+  {
+    "text": "Bosch's 1959 three-phase alternator could charge a battery while the engine idled.",
+    "source": "https://www.bosch-mobility.com/en/company/milestones/"
   }
 ];
   const dateFormatter = new Intl.DateTimeFormat('en-CA', {
