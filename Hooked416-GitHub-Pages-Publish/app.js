@@ -167,6 +167,10 @@
   {
     "text": "Bosch's 1959 three-phase alternator could charge a battery while the engine idled.",
     "source": "https://www.bosch-mobility.com/en/company/milestones/"
+  },
+  {
+    "text": "Did you know? Apollo's Moon rover rolled on woven steel-wire tyres with titanium treads.",
+    "source": "https://nssdc.gsfc.nasa.gov/planetary/lunar/apollo_lrv.html"
   }
 ];
   const dateFormatter = new Intl.DateTimeFormat('en-CA', {
