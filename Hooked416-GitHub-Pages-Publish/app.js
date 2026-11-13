@@ -171,6 +171,10 @@
   {
     "text": "Did you know? Apollo's Moon rover rolled on woven steel-wire tyres with titanium treads.",
     "source": "https://nssdc.gsfc.nasa.gov/planetary/lunar/apollo_lrv.html"
+  },
+  {
+    "text": "Did you know? British soldiers nicknamed Mack AC trucks 'Bulldogs' during the First World War.",
+    "source": "https://www.macktruckshistoricalmuseum.org/history/"
   }
 ];
   const dateFormatter = new Intl.DateTimeFormat('en-CA', {
