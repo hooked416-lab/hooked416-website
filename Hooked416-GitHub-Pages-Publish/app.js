@@ -175,6 +175,10 @@
   {
     "text": "Did you know? British soldiers nicknamed Mack AC trucks 'Bulldogs' during the First World War.",
     "source": "https://www.macktruckshistoricalmuseum.org/history/"
+  },
+  {
+    "text": "Did you know? Mazda began in 1920 as a cork manufacturer, years before it built automobiles.",
+    "source": "https://www.mazda.com/en/about/history/highlights/"
   }
 ];
   const dateFormatter = new Intl.DateTimeFormat('en-CA', {
