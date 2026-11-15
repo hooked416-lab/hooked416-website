@@ -179,6 +179,10 @@
   {
     "text": "Did you know? Mazda began in 1920 as a cork manufacturer, years before it built automobiles.",
     "source": "https://www.mazda.com/en/about/history/highlights/"
+  },
+  {
+    "text": "Did you know? Porsche introduced the 911 as the 901, then changed its name after an objection from Peugeot.",
+    "source": "https://investorrelations.porsche.com/en/about-porsche/heritage"
   }
 ];
   const dateFormatter = new Intl.DateTimeFormat('en-CA', {
