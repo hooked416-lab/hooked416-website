@@ -183,6 +183,10 @@
   {
     "text": "Did you know? Porsche introduced the 911 as the 901, then changed its name after an objection from Peugeot.",
     "source": "https://investorrelations.porsche.com/en/about-porsche/heritage"
+  },
+  {
+    "text": "Did you know? The Michelin Man's real name is Bibendum, and he first appeared in 1898.",
+    "source": "https://www.michelin.ca/en/why-michelin/michelin-man-origin"
   }
 ];
   const dateFormatter = new Intl.DateTimeFormat('en-CA', {
