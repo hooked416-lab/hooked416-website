@@ -187,6 +187,10 @@
   {
     "text": "Did you know? The Michelin Man's real name is Bibendum, and he first appeared in 1898.",
     "source": "https://www.michelin.ca/en/why-michelin/michelin-man-origin"
+  },
+  {
+    "text": "Did you know? Honda's 1981 Electro Gyrocator navigation system used transparent map sheets placed over a screen.",
+    "source": "https://global.honda/en/newsroom/news/2017/c170302eng.html"
   }
 ];
   const dateFormatter = new Intl.DateTimeFormat('en-CA', {
