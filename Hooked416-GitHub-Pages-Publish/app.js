@@ -191,6 +191,10 @@
   {
     "text": "Did you know? Honda's 1981 Electro Gyrocator navigation system used transparent map sheets placed over a screen.",
     "source": "https://global.honda/en/newsroom/news/2017/c170302eng.html"
+  },
+  {
+    "text": "Did you know? The Mercedes-Benz 300 SL's gullwing doors solved an engineering problem: its high tubular frame prevented conventional doors.",
+    "source": "https://partssearch.mercedes-benz-classic.com/series/detail/198"
   }
 ];
   const dateFormatter = new Intl.DateTimeFormat('en-CA', {
