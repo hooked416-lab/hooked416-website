@@ -195,6 +195,10 @@
   {
     "text": "Did you know? The Mercedes-Benz 300 SL's gullwing doors solved an engineering problem: its high tubular frame prevented conventional doors.",
     "source": "https://partssearch.mercedes-benz-classic.com/series/detail/198"
+  },
+  {
+    "text": "Did you know? Subaru's six-star badge represents the Pleiades star cluster, known in Japan as Subaru.",
+    "source": "https://contactus.subaru.com/knowledgebase/article/1000017/en-us"
   }
 ];
   const dateFormatter = new Intl.DateTimeFormat('en-CA', {
