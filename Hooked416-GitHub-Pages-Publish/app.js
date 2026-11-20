@@ -199,6 +199,10 @@
   {
     "text": "Did you know? Subaru's six-star badge represents the Pleiades star cluster, known in Japan as Subaru.",
     "source": "https://contactus.subaru.com/knowledgebase/article/1000017/en-us"
+  },
+  {
+    "text": "Did you know? BMW's signature twin-kidney radiator grille first appeared on the BMW 303 in 1933.",
+    "source": "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-274-1.bmw-303-sedan.html"
   }
 ];
   const dateFormatter = new Intl.DateTimeFormat('en-CA', {
