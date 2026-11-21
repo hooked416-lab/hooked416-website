@@ -203,6 +203,10 @@
   {
     "text": "Did you know? BMW's signature twin-kidney radiator grille first appeared on the BMW 303 in 1933.",
     "source": "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-274-1.bmw-303-sedan.html"
+  },
+  {
+    "text": "Did you know? Before paving Woodward Avenue in concrete in 1909, Michigan road commissioners visited Windsor, Ontario, to study its concrete streets.",
+    "source": "https://www.fhwa.dot.gov/rakeman/1909.htm"
   }
 ];
   const dateFormatter = new Intl.DateTimeFormat('en-CA', {
