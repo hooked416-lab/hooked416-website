@@ -14,6 +14,7 @@
   data.append('nickname',form.elements.nickname.value.trim());
   data.append('phone',form.elements.phone.value.trim());
   data.append('tssea',form.elements.tssea.value.trim());
+  data.append('email',form.elements.email.value.trim());
   data.append('licence',licence);
   submit.disabled=true;
   status.textContent='Sending your registration\u2026';
@@ -22,7 +23,7 @@
    const result=await response.json().catch(()=>null);
    if(response.ok){
     form.reset();
-    status.textContent='Registration received \u2014 thank you. A Hooked416 manager will review it. Once you are approved, you can sign in to the Private Property app with your phone number and the PIN the manager gives you.';
+    status.textContent='Registration received \u2014 thank you. A Hooked416 manager will review it. Once you are approved, we will email you a link to set your own PIN and open the Private Property app.';
    }else{
     status.textContent=(result&&result.error)?result.error:'Something went wrong sending your registration. Please try again, or call the office at 416-301-0820.';
    }
