@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://hooked416.com/sitemap.xml
+Sitemap: https://www.hooked416.com/sitemap.xml
