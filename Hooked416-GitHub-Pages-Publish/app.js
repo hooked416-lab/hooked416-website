@@ -207,6 +207,10 @@
   {
     "text": "Did you know? Before paving Woodward Avenue in concrete in 1909, Michigan road commissioners visited Windsor, Ontario, to study its concrete streets.",
     "source": "https://www.fhwa.dot.gov/rakeman/1909.htm"
+  },
+  {
+    "text": "Did you know? Mary Anderson's 1903 window-cleaner patent let a driver sweep rain and snow off the glass using a handle inside the vehicle.",
+    "source": "https://patents.google.com/patent/US743801A/en"
   }
 ];
   const dateFormatter = new Intl.DateTimeFormat('en-CA', {
