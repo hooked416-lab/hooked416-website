@@ -14,7 +14,6 @@
   data.append('nickname',form.elements.nickname.value.trim());
   data.append('phone',form.elements.phone.value.trim());
   data.append('tssea',form.elements.tssea.value.trim());
-  data.append('truck_name',form.elements.truck_name.value);
   data.append('licence',licence);
   submit.disabled=true;
   status.textContent='Sending your registration\u2026';
