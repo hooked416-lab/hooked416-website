@@ -211,6 +211,10 @@
   {
     "text": "Did you know? Mary Anderson's 1903 window-cleaner patent let a driver sweep rain and snow off the glass using a handle inside the vehicle.",
     "source": "https://patents.google.com/patent/US743801A/en"
+  },
+  {
+    "text": "Did you know? QR codes began in 1994 as a tool for managing auto-parts production, long before smartphone scanning became everyday life.",
+    "source": "https://www.denso-wave.com/qr2019/en/"
   }
 ];
   const dateFormatter = new Intl.DateTimeFormat('en-CA', {
