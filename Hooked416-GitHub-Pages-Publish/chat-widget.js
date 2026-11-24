@@ -24,38 +24,38 @@
   var CHIPS = ['How do I get my car back?', 'What do I need to bring?', 'Where do I go?', 'What are your hours?', 'Why was my car towed?', 'How much will I owe?'];
 
   var CSS = [
-    '.h416-launch{position:fixed;right:18px;bottom:24px;z-index:9998;background:#c8102e;color:#fff;border:0;border-radius:999px;padding:13px 20px;font:600 15px/1.2 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;box-shadow:0 6px 22px rgba(0,0,0,.35);cursor:pointer}',
-    '.h416-launch:hover{background:#a50d26}',
-    '@media (max-width:820px){.h416-launch{bottom:86px;right:14px;padding:12px 16px;font-size:14px}}',
-    '.h416-panel{position:fixed;right:18px;bottom:86px;z-index:9999;width:362px;max-width:calc(100vw - 24px);height:520px;max-height:calc(100dvh - 120px);background:#171717;color:#f2f2f2;border-radius:16px;box-shadow:0 14px 44px rgba(0,0,0,.5);display:none;flex-direction:column;overflow:hidden;font:400 14.5px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}',
-    '@media (max-width:820px){.h416-panel{bottom:140px}}',
-    '.h416-panel.open{display:flex}',
-    '.h416-head{background:#c8102e;color:#fff;padding:12px 14px;display:flex;align-items:center;gap:10px}',
-    '.h416-head b{font-size:15.5px;display:block}',
-    '.h416-head span{font-size:12.5px;opacity:.92;display:block}',
-    '.h416-head a{color:#fff;font-weight:700;text-decoration:none;white-space:nowrap}',
-    '.h416-x{margin-left:auto;background:transparent;border:0;color:#fff;font-size:20px;cursor:pointer;padding:2px 6px;line-height:1}',
-    '.h416-msgs{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px}',
-    '.h416-m{max-width:86%;padding:9px 12px;border-radius:13px;white-space:pre-wrap;word-wrap:break-word}',
-    '.h416-m.bot{background:#262626;align-self:flex-start;border-bottom-left-radius:4px}',
-    '.h416-m.me{background:#c8102e;color:#fff;align-self:flex-end;border-bottom-right-radius:4px}',
-    '.h416-m a{color:#ffb3ba}',
-    '.h416-m.me a{color:#fff}',
-    '.h416-chips{display:flex;flex-wrap:wrap;gap:6px;padding:0 12px 10px}',
-    '.h416-chip{background:#262626;color:#f2f2f2;border:1px solid #3d3d3d;border-radius:999px;padding:6px 11px;font-size:13px;cursor:pointer}',
-    '.h416-chip:hover{border-color:#c8102e}',
-    '.h416-chip.plate{background:#c8102e;border-color:#c8102e;color:#fff;font-weight:600}',
-    '.h416-mode{display:none;padding:0 12px 8px;gap:6px;align-items:center;font-size:13px}',
-    '.h416-mode.on{display:flex}',
-    '.h416-mode button{background:#262626;color:#f2f2f2;border:1px solid #3d3d3d;border-radius:8px;padding:5px 10px;cursor:pointer;font-size:13px}',
-    '.h416-mode button.sel{background:#c8102e;border-color:#c8102e;color:#fff}',
-    '.h416-mode .back{margin-left:auto;color:#ffb3ba;background:none;border:0;text-decoration:underline}',
-    '.h416-form{display:flex;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));border-top:1px solid #2c2c2c;background:#1d1d1d}',
-    '.h416-in{flex:1;background:#262626;border:1px solid #3d3d3d;border-radius:10px;color:#fff;padding:10px 11px;font-size:14.5px;min-width:0}',
-    '.h416-in::placeholder{color:#9a9a9a}',
-    '.h416-send{background:#c8102e;color:#fff;border:0;border-radius:10px;padding:0 16px;font-weight:700;cursor:pointer;font-size:14.5px}',
-    '.h416-send:disabled{opacity:.55;cursor:default}',
-    '.h416-typing{opacity:.65;font-style:italic}'
+    '.h416c-launch{position:fixed;right:18px;bottom:24px;z-index:9998;background:#c8102e;color:#fff;border:0;border-radius:999px;padding:13px 20px;font:600 15px/1.2 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;box-shadow:0 6px 22px rgba(0,0,0,.35);cursor:pointer}',
+    '.h416c-launch:hover{background:#a50d26}',
+    '@media (max-width:820px){.h416c-launch{bottom:86px;right:14px;padding:12px 16px;font-size:14px}}',
+    '.h416c-panel{position:fixed;right:18px;bottom:86px;z-index:9999;width:362px;max-width:calc(100vw - 24px);height:520px;max-height:calc(100dvh - 120px);background:#171717;color:#f2f2f2;border-radius:16px;box-shadow:0 14px 44px rgba(0,0,0,.5);display:none;flex-direction:column;overflow:hidden;font:400 14.5px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}',
+    '@media (max-width:820px){.h416c-panel{bottom:140px}}',
+    '.h416c-panel.open{display:flex}',
+    '.h416c-head{background:#c8102e;color:#fff;padding:12px 14px;display:flex;align-items:center;gap:10px}',
+    '.h416c-head b{font-size:15.5px;display:block}',
+    '.h416c-head span{font-size:12.5px;opacity:.92;display:block}',
+    '.h416c-head a{color:#fff;font-weight:700;text-decoration:none;white-space:nowrap}',
+    '.h416c-x{margin-left:auto;background:transparent;border:0;color:#fff;font-size:20px;cursor:pointer;padding:2px 6px;line-height:1}',
+    '.h416c-msgs{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px}',
+    '.h416c-m{max-width:86%;padding:9px 12px;border-radius:13px;white-space:pre-wrap;word-wrap:break-word}',
+    '.h416c-m.bot{background:#262626;align-self:flex-start;border-bottom-left-radius:4px}',
+    '.h416c-m.me{background:#c8102e;color:#fff;align-self:flex-end;border-bottom-right-radius:4px}',
+    '.h416c-m a{color:#ffb3ba}',
+    '.h416c-m.me a{color:#fff}',
+    '.h416c-chips{display:flex;flex-wrap:wrap;gap:6px;padding:0 12px 10px}',
+    '.h416c-chip{background:#262626;color:#f2f2f2;border:1px solid #3d3d3d;border-radius:999px;padding:6px 11px;font-size:13px;cursor:pointer}',
+    '.h416c-chip:hover{border-color:#c8102e}',
+    '.h416c-chip.plate{background:#c8102e;border-color:#c8102e;color:#fff;font-weight:600}',
+    '.h416c-mode{display:none;padding:0 12px 8px;gap:6px;align-items:center;font-size:13px}',
+    '.h416c-mode.on{display:flex}',
+    '.h416c-mode button{background:#262626;color:#f2f2f2;border:1px solid #3d3d3d;border-radius:8px;padding:5px 10px;cursor:pointer;font-size:13px}',
+    '.h416c-mode button.sel{background:#c8102e;border-color:#c8102e;color:#fff}',
+    '.h416c-mode .back{margin-left:auto;color:#ffb3ba;background:none;border:0;text-decoration:underline}',
+    '.h416c-form{display:flex;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));border-top:1px solid #2c2c2c;background:#1d1d1d}',
+    '.h416c-in{flex:1;background:#262626;border:1px solid #3d3d3d;border-radius:10px;color:#fff;padding:10px 11px;font-size:14.5px;min-width:0}',
+    '.h416c-in::placeholder{color:#9a9a9a}',
+    '.h416c-send{background:#c8102e;color:#fff;border:0;border-radius:10px;padding:0 16px;font-weight:700;cursor:pointer;font-size:14.5px}',
+    '.h416c-send:disabled{opacity:.55;cursor:default}',
+    '.h416c-typing{opacity:.65;font-style:italic}'
   ].join('\n');
 
   function el(tag, cls, text) {
@@ -66,38 +66,38 @@
   }
 
   function init() {
-    if (document.querySelector('.h416-launch')) return;
+    if (document.querySelector('.h416c-launch')) return;
     var style = document.createElement('style');
     style.textContent = CSS;
     document.head.appendChild(style);
 
-    var launch = el('button', 'h416-launch', '🚗 Your car was towed? Chat');
+    var launch = el('button', 'h416c-launch', '🚗 Your car was towed? Chat');
     launch.type = 'button';
     launch.setAttribute('aria-label', 'Open the Hooked416 helper chat');
 
-    var panel = el('section', 'h416-panel');
+    var panel = el('section', 'h416c-panel');
     panel.setAttribute('aria-label', 'Hooked416 helper chat');
-    var head = el('div', 'h416-head');
+    var head = el('div', 'h416c-head');
     var htxt = el('div');
     htxt.appendChild(el('b', null, 'Your car was towed?'));
     htxt.appendChild(el('span', null, 'Hooked416 · here day & night'));
     var call = el('a', null, '📞 ' + PHONE);
     call.href = 'tel:+14163010820';
-    var x = el('button', 'h416-x', '×');
+    var x = el('button', 'h416c-x', '×');
     x.type = 'button';
     x.setAttribute('aria-label', 'Close chat');
     head.appendChild(htxt); head.appendChild(call); head.appendChild(x);
 
-    var msgs = el('div', 'h416-msgs');
-    var chips = el('div', 'h416-chips');
-    var mode = el('div', 'h416-mode');
-    var form = el('form', 'h416-form');
-    var input = el('input', 'h416-in');
+    var msgs = el('div', 'h416c-msgs');
+    var chips = el('div', 'h416c-chips');
+    var mode = el('div', 'h416c-mode');
+    var form = el('form', 'h416c-form');
+    var input = el('input', 'h416c-in');
     input.type = 'text';
     input.maxLength = 500;
     input.placeholder = 'Ask a question…';
     input.setAttribute('aria-label', 'Type your question');
-    var send = el('button', 'h416-send', 'Send');
+    var send = el('button', 'h416c-send', 'Send');
     send.type = 'submit';
     form.appendChild(input); form.appendChild(send);
     panel.appendChild(head); panel.appendChild(msgs); panel.appendChild(chips); panel.appendChild(mode); panel.appendChild(form);
@@ -109,7 +109,7 @@
     var busy = false;
 
     function addMsg(text, who) {
-      var m = el('div', 'h416-m ' + who, text);
+      var m = el('div', 'h416c-m ' + who, text);
       msgs.appendChild(m);
       msgs.scrollTop = msgs.scrollHeight;
       return m;
@@ -125,7 +125,7 @@
     function showFaqList() {
       addMsg('Here are the questions I can answer right away — tap one, or call us at ' + PHONE + ':', 'bot');
       FAQ.forEach(function (f) {
-        var c = el('button', 'h416-chip', f.q);
+        var c = el('button', 'h416c-chip', f.q);
         c.type = 'button';
         c.addEventListener('click', function () {
           addMsg(f.q, 'me'); addMsg(f.a, 'bot');
@@ -139,7 +139,7 @@
     }
 
     CHIPS.forEach(function (q) {
-      var c = el('button', 'h416-chip', q);
+      var c = el('button', 'h416c-chip', q);
       c.type = 'button';
       c.addEventListener('click', function () {
         if (busy) return;
@@ -149,7 +149,7 @@
       });
       chips.appendChild(c);
     });
-    var plateChip = el('button', 'h416-chip plate', '🔎 Check my licence plate');
+    var plateChip = el('button', 'h416c-chip plate', '🔎 Check my licence plate');
     plateChip.type = 'button';
     plateChip.addEventListener('click', function () { setLookup('plate'); });
     chips.appendChild(plateChip);
@@ -196,7 +196,7 @@
       input.value = '';
       addMsg(text, 'me');
       busy = true; send.disabled = true;
-      var typing = addMsg('One moment…', 'bot h416-typing');
+      var typing = addMsg('One moment…', 'bot h416c-typing');
       var done = function () { typing.remove(); busy = false; send.disabled = false; input.focus(); };
 
       if (lookupMode) {
