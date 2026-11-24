@@ -1,4 +1,13 @@
-/* Hooked416 helper: local FAQ answers and live vehicle lookup. */
+/* Hooked416 website helper chat — "Your car was towed?"
+   FAQ-ONLY mode (Mike, 2026-11-24): there is NO free-text chat and
+   nothing on this site talks to an AI — the pay-as-you-go Gemini key
+   must never be reachable from the public website. The widget offers:
+   (1) the baked-in FAQ below — tap a question, get the answer
+   instantly, no network call; and (2) a live licence-plate lookup
+   (POST /api/site-lookup on the Hooked416 app Worker), which answers
+   from three fixed templates and never used AI. For anything else,
+   visitors are pointed at the phone: 416-301-0820. Loading this file
+   adds no tracking and stores nothing. */
 (function () {
   'use strict';
   var API = 'https://hooked416-private-property.hooked416.workers.dev';
@@ -8,12 +17,13 @@
     { q: 'How do I get my car back?', a: 'Call 416-301-0820 first, bring your driver’s licence and the vehicle ownership (registration), then pick up at our yard at 125 16th Ave, Richmond Hill. Releases are by appointment, so please call before you come.' },
     { q: 'What do I need to bring?', a: 'Your driver’s licence and the vehicle ownership (registration) — and a quick call first, so everything is ready for you when you arrive.' },
     { q: 'Where do I go?', a: '125 16th Ave, Richmond Hill, ON. Releases are by appointment, so please call 416-301-0820 before heading out.' },
-    { q: 'What are your hours?', a: 'We’re here day and night. Vehicle releases are by appointment only, so call 416-301-0820 any time and we’ll set up your pickup.' },
-    { q: 'The vehicle isn’t in my name — can I still get it back?', a: 'Call us and ask — we’ll explain exactly what you’ll need based on your situation.' },
+    { q: 'What are your hours? Can I pick up my vehicle any time?', a: 'We’re here day and night. Vehicle releases are by appointment only, so call 416-301-0820 any time and we’ll set up your pickup.' },
+    { q: 'The vehicle isn’t in my name. Can I still get it back?', a: 'Call us and ask — we’ll explain exactly what you’ll need based on your situation.' },
     { q: 'Why was my car towed?', a: 'Private-property tows are carried out at the request of the property owner or manager, under municipal bylaw, when a vehicle is parked without authorization. Every vehicle we tow is documented and photographed.' },
-    { q: 'How much will I owe?', a: 'The amount depends on the tow and the days in storage — call 416-301-0820 for the exact amount.' },
-    { q: 'Does the amount owing change the longer my vehicle stays?', a: 'Yes. The amount depends on the tow and the days in storage — call 416-301-0820 for the exact amount.' }
+    { q: 'How much will I owe?', a: 'The amount depends on the tow and the number of days the vehicle has been in storage. Call us and we’ll give you the exact amount owing on your vehicle before you come — no surprises.' },
+    { q: 'Does the amount owing change the longer my vehicle stays?', a: 'Yes — storage charges apply for each day the vehicle is in the yard, starting the day it arrives. Call us and we’ll confirm the exact amount owing on your vehicle before you come.' }
   ];
+  var CHIPS = ['How do I get my car back?', 'What do I need to bring?', 'Where do I go?', 'What are your hours?', 'Why was my car towed?', 'How much will I owe?'];
 
   var CSS = [
     '.h416c-launch{position:fixed;right:18px;bottom:24px;z-index:9998;background:#c8102e;color:#fff;border:0;border-radius:999px;padding:13px 20px;font:600 15px/1.2 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;box-shadow:0 6px 22px rgba(0,0,0,.35);cursor:pointer}',
@@ -33,19 +43,17 @@
     '.h416c-m.me{background:#c8102e;color:#fff;align-self:flex-end;border-bottom-right-radius:4px}',
     '.h416c-m a{color:#ffb3ba}',
     '.h416c-m.me a{color:#fff}',
-    '.h416c-chips{display:flex;flex-wrap:wrap;gap:6px;padding:0}',
+    '.h416c-chips{display:flex;flex-wrap:wrap;gap:6px;padding:0 12px 10px}',
     '.h416c-chip{background:#262626;color:#f2f2f2;border:1px solid #3d3d3d;border-radius:999px;padding:6px 11px;font-size:13px;cursor:pointer}',
     '.h416c-chip:hover{border-color:#c8102e}',
     '.h416c-chip.plate{background:#c8102e;border-color:#c8102e;color:#fff;font-weight:600}',
-    '.h416c-contact{margin:0}',
-    '.h416c-contact a{color:#ffb3ba}',
     '.h416c-mode{display:none;padding:0 12px 8px;gap:6px;align-items:center;font-size:13px}',
     '.h416c-mode.on{display:flex}',
     '.h416c-mode button{background:#262626;color:#f2f2f2;border:1px solid #3d3d3d;border-radius:8px;padding:5px 10px;cursor:pointer;font-size:13px}',
     '.h416c-mode button.sel{background:#c8102e;border-color:#c8102e;color:#fff}',
     '.h416c-mode .back{margin-left:auto;color:#ffb3ba;background:none;border:0;text-decoration:underline}',
-    '.h416c-form{display:flex;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));border-top:1px solid #2c2c2c;background:#1d1d1d}',
-    '.h416c-form[hidden]{display:none}',
+    '.h416c-form{display:none;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));border-top:1px solid #2c2c2c;background:#1d1d1d}',
+    '.h416c-form.on{display:flex}',
     '.h416c-in{flex:1;background:#262626;border:1px solid #3d3d3d;border-radius:10px;color:#fff;padding:10px 11px;font-size:14.5px;min-width:0}',
     '.h416c-in::placeholder{color:#9a9a9a}',
     '.h416c-send{background:#c8102e;color:#fff;border:0;border-radius:10px;padding:0 16px;font-weight:700;cursor:pointer;font-size:14.5px}',
@@ -86,21 +94,20 @@
     var msgs = el('div', 'h416c-msgs');
     var chips = el('div', 'h416c-chips');
     var mode = el('div', 'h416c-mode');
+    // The only text field in the widget is the plate / VIN entry,
+    // shown solely in lookup mode. There is no free-text chat input:
+    // nothing a visitor types here can reach an AI endpoint — the
+    // submit below only ever calls /api/site-lookup.
     var form = el('form', 'h416c-form');
-    form.hidden = true;
     var input = el('input', 'h416c-in');
     input.type = 'text';
-    var send = el('button', 'h416c-send', 'Send');
+    input.maxLength = 12;
+    input.placeholder = 'Enter your licence plate…';
+    input.setAttribute('aria-label', 'Enter your licence plate or the last 6 characters of the VIN');
+    var send = el('button', 'h416c-send', 'Check');
     send.type = 'submit';
     form.appendChild(input); form.appendChild(send);
-    var contact = el('p', 'h416c-contact', 'For anything else, call us at ');
-    var contactLink = el('a', null, PHONE);
-    contactLink.href = call.href;
-    contact.appendChild(contactLink);
-    contact.appendChild(document.createTextNode(' — day or night.'));
-    msgs.appendChild(chips);
-    msgs.appendChild(contact);
-    panel.appendChild(head); panel.appendChild(msgs); panel.appendChild(mode); panel.appendChild(form);
+    panel.appendChild(head); panel.appendChild(msgs); panel.appendChild(chips); panel.appendChild(mode); panel.appendChild(form);
     document.body.appendChild(launch);
     document.body.appendChild(panel);
 
@@ -113,13 +120,19 @@
       msgs.scrollTop = msgs.scrollHeight;
       return m;
     }
-    FAQ.forEach(function (faq) {
-      var c = el('button', 'h416c-chip', faq.q);
+    function faqAnswer(q) {
+      for (var i = 0; i < FAQ.length; i++) if (FAQ[i].q === q) return FAQ[i].a;
+      return null;
+    }
+
+    CHIPS.forEach(function (q) {
+      var c = el('button', 'h416c-chip', q);
       c.type = 'button';
       c.addEventListener('click', function () {
         if (busy) return;
-        addMsg(faq.q, 'me');
-        addMsg(faq.a, 'bot');
+        addMsg(q, 'me');
+        var a = faqAnswer(q === 'What are your hours?' ? 'What are your hours? Can I pick up my vehicle any time?' : q);
+        if (a) addMsg(a, 'bot');
       });
       chips.appendChild(c);
     });
@@ -135,13 +148,12 @@
     mode.appendChild(modeLabel); mode.appendChild(bPlate); mode.appendChild(bVin); mode.appendChild(bBack);
     function setLookup(kind) {
       lookupMode = kind;
-      form.hidden = false;
       mode.classList.add('on');
+      form.classList.add('on');
       bPlate.classList.toggle('sel', kind === 'plate');
       bVin.classList.toggle('sel', kind === 'vin');
       input.maxLength = kind === 'plate' ? 12 : 17;
       input.placeholder = kind === 'plate' ? 'Enter your licence plate…' : 'Enter the last 6 of the VIN…';
-      input.setAttribute('aria-label', input.placeholder);
       if (kind === 'plate') addMsg('Enter your licence plate and I’ll check whether we have the vehicle. You can also use the last 6 characters of the VIN instead.', 'bot');
       input.focus();
     }
@@ -150,10 +162,8 @@
     bBack.addEventListener('click', function () {
       lookupMode = null;
       mode.classList.remove('on');
-      form.hidden = true;
+      form.classList.remove('on');
       input.value = '';
-      msgs.scrollTop = 0;
-      plateChip.focus();
     });
 
     function post(path, body) {
@@ -169,12 +179,12 @@
     form.addEventListener('submit', function (ev) {
       ev.preventDefault();
       var text = input.value.trim();
-      if (!lookupMode || !text || busy) return;
+      if (!text || busy || !lookupMode) return;
       input.value = '';
       addMsg(text, 'me');
       busy = true; send.disabled = true;
       var typing = addMsg('One moment…', 'bot h416c-typing');
-      var done = function () { typing.remove(); busy = false; send.disabled = false; if (lookupMode && panel.classList.contains('open')) input.focus(); };
+      var done = function () { typing.remove(); busy = false; send.disabled = false; input.focus(); };
 
       var payload = lookupMode === 'plate' ? { plate: text } : { vin: text };
       post('/api/site-lookup', payload).then(function (res) {
@@ -187,18 +197,15 @@
       });
     });
 
+    var greeted = false;
     function toggle(open) {
       panel.classList.toggle('open', open);
-      launch.setAttribute('aria-expanded', String(open));
-      if (!open) return;
-      if (lookupMode) {
-        input.focus();
-      } else {
-        msgs.scrollTop = 0;
-        chips.firstElementChild.focus();
+      if (open && !greeted) {
+        greeted = true;
+        addMsg('Hi — I’m the Hooked416 helper. If your car was towed from private property, tap a question below for an instant answer, or check our yard by licence plate. For anything else, call us at ' + PHONE + ' — a real person answers day and night.', 'bot');
       }
+      if (open && lookupMode) input.focus();
     }
-    launch.setAttribute('aria-expanded', 'false');
     launch.addEventListener('click', function () { toggle(!panel.classList.contains('open')); });
     x.addEventListener('click', function () { toggle(false); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') toggle(false); });
