@@ -215,6 +215,10 @@
   {
     "text": "Did you know? QR codes began in 1994 as a tool for managing auto-parts production, long before smartphone scanning became everyday life.",
     "source": "https://www.denso-wave.com/qr2019/en/"
+  },
+  {
+    "text": "Did you know? NASA Glenn developed an airless tyre using shape-memory alloys that can flex over obstacles and recover without permanent damage.",
+    "source": "https://technology.nasa.gov/patent/LEW-TOPS-99"
   }
 ];
   const dateFormatter = new Intl.DateTimeFormat('en-CA', {
