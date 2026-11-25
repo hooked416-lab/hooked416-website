@@ -219,6 +219,10 @@
   {
     "text": "Did you know? NASA Glenn developed an airless tyre using shape-memory alloys that can flex over obstacles and recover without permanent damage.",
     "source": "https://technology.nasa.gov/patent/LEW-TOPS-99"
+  },
+  {
+    "text": "Did you know? The Porsche 959 combined two cooling methods in one engine: air-cooled cylinders and water-cooled cylinder heads.",
+    "source": "https://newsroom.porsche.com/en/2022/history/porsche-classic-959-s-factory-restoration-nick-heidfeld-28934.html"
   }
 ];
   const dateFormatter = new Intl.DateTimeFormat('en-CA', {
