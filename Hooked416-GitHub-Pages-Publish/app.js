@@ -223,6 +223,10 @@
   {
     "text": "Did you know? The Porsche 959 combined two cooling methods in one engine: air-cooled cylinders and water-cooled cylinder heads.",
     "source": "https://newsroom.porsche.com/en/2022/history/porsche-classic-959-s-factory-restoration-nick-heidfeld-28934.html"
+  },
+  {
+    "text": "Did you know? Daimler's first truck in 1896 could carry 1.5 tonnes with a two-cylinder engine producing just four horsepower.",
+    "source": "https://www.daimlertruck.com/en/company/history"
   }
 ];
   const dateFormatter = new Intl.DateTimeFormat('en-CA', {
