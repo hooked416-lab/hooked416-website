@@ -227,6 +227,10 @@
   {
     "text": "Did you know? Daimler's first truck in 1896 could carry 1.5 tonnes with a two-cylinder engine producing just four horsepower.",
     "source": "https://www.daimlertruck.com/en/company/history"
+  },
+  {
+    "text": "Did you know? Route 66 was established in 1926, but drivers had to wait until 1938 for the entire Chicago-to-Los Angeles highway to be paved.",
+    "source": "https://home.nps.gov/articles/route-66-1926-1945.htm"
   }
 ];
   const dateFormatter = new Intl.DateTimeFormat('en-CA', {
