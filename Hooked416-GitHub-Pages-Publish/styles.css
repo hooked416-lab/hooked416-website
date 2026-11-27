@@ -93,3 +93,6 @@
 /* Keep footer privacy controls clear of the fixed service-helper launcher. */
 .footer{padding-bottom:95px}
 @media(max-width:800px){.footer{padding-bottom:calc(160px + env(safe-area-inset-bottom))}}
+
+/* Even out the desktop header nav: tabs share the space between the logo and the call button equally. */
+@media(min-width:1101px){.nav{flex:1}.nav a{flex:1 1 0;text-align:center}}
